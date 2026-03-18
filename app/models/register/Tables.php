@@ -9,5 +9,6 @@ class Tables {
 
     public $tables = [
 
+        "User" => "users"
     ];
 }

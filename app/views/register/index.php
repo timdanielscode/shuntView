@@ -30,19 +30,19 @@
         </nav>
         <section class="p-5">
             <div class="container">
-                <form class="mt-5">
+                <form method="POST" class="mt-5">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username">
+                        <input name="username" type="text" class="form-control" id="username">
                         <div id="emailHelp" class="form-text">Should be an unique username.</div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password">
+                        <input name="password" type="password" class="form-control" id="password">
                     </div>
                     <div class="mb-3">
                         <label for="retypePassword" class="form-label">Retype password</label>
-                        <input type="password" class="form-control" id="retypePassword">
+                        <input name="retypePassword" type="password" class="form-control" id="retypePassword">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
