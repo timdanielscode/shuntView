@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\User;
+use core\Session;
 
 class RegisterController extends Controller {
 
@@ -15,11 +16,13 @@ class RegisterController extends Controller {
 
         User::insert([
 
-            'username' => $request['username'],
-            'password' => password_hash($request['password'], PASSWORD_DEFAULT),
+            'username' => $request["username"],
+            'password' => password_hash($request["password"], PASSWORD_DEFAULT),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
+
+        Session::set("success", "You have been successfully registered!");
              
         redirect('/'); 
     }

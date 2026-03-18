@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use extensions\Auth;
+use core\Session;
 
 class LoginController extends Controller {
 
@@ -15,6 +16,7 @@ class LoginController extends Controller {
 
         if(Auth::success(['username' => $request]) === true) {
               
+            Session::set("success", "Let’s go!");
             redirect("/");
         } else {
             redirect("/login");
