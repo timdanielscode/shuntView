@@ -12,16 +12,10 @@ class Auth {
      * 
      * @param array $roleType type of role
      */
-    public static function success($request, $role = null) {
+    public static function success($request) {
 
-        if(!empty($role) && $role !== null) {
-
-            $sql = DB::try()->select('*')->from('users')->join('roles')->on('users.role_id', '=', 'roles.id')->where(key($request), '=', $request[key($request)][key($request)])->and('type', '=', $role['role'])->first();
-        } else {
-
-            $sql = DB::try()->select('*')->from('users')->where(key($request), '=', $request[key($request)][key($request)])->and('role_id', 'IS', NULL)->first();
-        }
-
+        $sql = DB::try()->select('*')->from('users')->where(key($request), '=', $request[key($request)][key($request)])->first();
+     
         return self::verifyPassword($sql, $request[key($request)]['password']);
     }
 
@@ -39,7 +33,6 @@ class Auth {
         if(!empty($sql) && password_verify($password, $sql['password']) && Session::exists('failed_login_attempts_timestamp') === false) {
 
             Session::set('logged_in', true);
-            Session::set('user_role', $sql['role_id']);
             Session::set('username', $sql['username']);
 
             return true;
