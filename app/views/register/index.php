@@ -33,20 +33,29 @@
                 <form method="POST" class="mt-5">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input name="username" type="text" class="form-control" id="username">
-                        <div id="emailHelp" class="form-text">Should be an unique username.</div>
+                        <input name="username" value="<?php if(!empty($username) ) { echo $username; } ?>" type="text" class="form-control" id="username">
+                        <div class="form-text text-danger">
+                            <?php if(!empty($username) ) { echo validation\Errors::get($rules, "username"); } ?>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input name="password" type="password" class="form-control" id="password">
+                        <div class="form-text text-danger">
+                            <?php if(!empty($rules) ) { echo validation\Errors::get($rules, "password"); } ?>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="retypePassword" class="form-label">Retype password</label>
                         <input name="retypePassword" type="password" class="form-control" id="retypePassword">
+                        <div class="form-text text-danger">
+                            <?php if(!empty($rules) ) { echo validation\Errors::get($rules, "retypePassword"); } ?> 
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <input type="hidden" name="token" value="<?php core\Csrf::token(); ?>"/>
                 </form>
             </div>
         <section>
     </body>
-</html> 
+</html>
