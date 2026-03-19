@@ -47,7 +47,7 @@ class LoginController extends Controller {
 
         if(Auth::success(['username' => $request]) === true && Session::get('failed_login_attempt') < 3) {
               
-            Session::set("success", "Let’s go!");
+            Session::set("success", '<b>' . $request['username'] . '</b>' . ' ' . "let’s go!");
 
             $data =  User::whereColumns(['id'], ['username' => $request['username']]);
             redirect("/trainer/" . $data[0]['id']);

@@ -28,10 +28,14 @@
                 </div>
             </div>
         </nav>
-        <section>
-            <div class="container">
+        <section class="p-5">
 
-            </div>
-        </section>
+            <?php if(core\Session::exists("success") === true) { ?>
+                    <div class="alert alert-primary text-center mt-5" role="alert">
+                        <?php core\Alert::message("success"); ?>
+                    </div>
+                <?php } ?>
+
+        <section>
     </body>
 </html> 

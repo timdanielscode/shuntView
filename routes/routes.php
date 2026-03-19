@@ -7,3 +7,4 @@ new Route(['GET' => '/register'], ['RegisterController' => 'index']);
 new Route(['POST' => '/register'], ['RegisterController' => 'store']);
 new Route(['GET' => '/login'], ['LoginController' => 'index']);
 new Route(['POST' => '/login'], ['LoginController' => 'login']);
+new Route(['GET' => '/trainer/[id]'], ['TrainerController' => 'index']);
