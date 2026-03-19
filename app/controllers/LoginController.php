@@ -9,6 +9,8 @@ use validation\Rules;
 
 class LoginController extends Controller {
 
+    private $_data = [];
+
     public function index() {
 
         return $this->view("login/index")->data();
@@ -18,7 +20,7 @@ class LoginController extends Controller {
 
         $rules = new Rules();
 
-        if($rules->login($request['username'], $request['password'], $request['token'], Csrf::get())->validated()) {
+        if($rules->login($request['username'], $request['password'], $request['token'], Csrf::get())->validated() ) {
            
             $this->auth($request);
 
@@ -32,9 +34,17 @@ class LoginController extends Controller {
         }
     }
 
+    private function checkAttempts() {
+
+        if(Session::get('failed_login_attempt') == 3) {
+
+            Session::set('too-many-attempts');
+        }
+    }
+
     private function auth($request) {
 
-        if(Auth::success(['username' => $request]) === true) {
+        if(Auth::success(['username' => $request]) === true && Session::get('failed_login_attempt') < 3) {
               
             Session::set("success", "Let’s go!");
             redirect("/");

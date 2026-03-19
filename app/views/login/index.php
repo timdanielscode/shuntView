@@ -30,6 +30,13 @@
         </nav>
         <section class="p-5">
             <div class="container">
+                
+                <?php if(!empty(extensions\Auth::getFailedMessages() ) ) { ?>
+                    <div class="alert alert-primary" role="alert">
+                        <?php echo extensions\Auth::getFailedMessages(); ?>
+                    </div>
+                <?php } ?>
+
                 <form method="POST" class="mt-5">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
