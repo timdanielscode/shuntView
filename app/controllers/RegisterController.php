@@ -9,6 +9,8 @@ use validation\Rules;
 
 class RegisterController extends Controller {
 
+    private $_data = [];
+
     public function index() {
 
         return $this->view("register/index")->data();

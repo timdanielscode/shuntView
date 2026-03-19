@@ -6,6 +6,7 @@ use extensions\Auth;
 use core\Session;
 use core\Csrf;
 use validation\Rules;
+use app\models\User;
 
 class LoginController extends Controller {
 
@@ -47,7 +48,9 @@ class LoginController extends Controller {
         if(Auth::success(['username' => $request]) === true && Session::get('failed_login_attempt') < 3) {
               
             Session::set("success", "Let’s go!");
-            redirect("/");
+
+            $data =  User::whereColumns(['id'], ['username' => $request['username']]);
+            redirect("/trainer/" . $data[0]['id']);
         } else {
             redirect("/login");
         }
