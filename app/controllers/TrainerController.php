@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Api;
 use app\models\Pokemon;
 use core\Session;
+use database\DB;
 
 class TrainerController extends Controller {
 
@@ -12,7 +13,8 @@ class TrainerController extends Controller {
 
     public function index($request) {
 
-        $this->_data['id'] = $request['id'];
+        $this->_data['id'] = explode('?', $request['id']);
+        $this->_data['pokemon'] = DB::try()->select("id")->from("pokemon")->fetch();
 
         return $this->view("trainer/index")->data($this->_data);
     }

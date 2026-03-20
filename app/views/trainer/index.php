@@ -39,10 +39,40 @@
 
             <div class="container text-center">
 
-                <a href="/trainer/<?php echo $id; ?>/new">Select new shunt</a>
+                <div class="row">
+                    <div class="col">
 
+                        <?php if(!empty($pokemon) === true) { ?>
+
+                            <?php foreach($pokemon as $key => $value) { ?>
+
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $value['id']; ?>.png"/>
+
+                            <?php } ?>
+
+                        <?php } else { ?>
+
+                            <a href="/trainer/<?php echo $id; ?>/new">Select new shunt</a>
+
+                        <?php } ?>
+
+                    </div>
+                    <div class="col">
+                        
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php echo core\Session::get('pokemonId'); ?>.png"/>
+
+                    </div>
+                    <div class="col">
+                        <div class="pokemonSprites">
+                            <?php for($i = 1; $i <= 807; $i++) { ?>
+                            <form method="GET" action="/trainer/<?php echo $id[0]; ?>/new">
+                                <button type="submit" name="pokemonId" value="<?php echo $i; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $i; ?>.png"/></button>
+                            </form>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         <section>
     </body>
 </html> 
