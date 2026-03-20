@@ -61,31 +61,31 @@
                                 <option value="ds">DS / DS lite</option>
                                 <option value="3ds">3DS</option>
                             </select>
-                            <select name="game" class="form-select" aria-label="Default select example">
-                                <option value="gold">Pokemon Gold</option>
-                                <option value="silver">Pokemon Silver</option>
-                                <option value="crystal">Pokemon Crystal</option>
-                                <option value="leafGreen">Pokemon Leaf Green</option>
-                                <option value="fireRed">Pokemon Fire Red</option>
-                                <option value="ruby">Pokemon Ruby</option>
-                                <option value="saphire">Pokemon Saphire</option>
-                                <option value="emerald">Pokemon Emerald</option>
-                                <option value="unbound">Pokemon Unbound</option>
-                                <option value="diamond">Pokemon Diamond</option>
-                                <option value="pearl">Pokemon Pearl</option>
-                                <option value="platinum">Pokemon Platinum</option>
-                                <option value="hearthGold">Pokemon Hearth Gold</option>
-                                <option value="soulSilver">Pokemon Soul Silver</option>
-                                <option value="black">Pokemon Black</option>
-                                <option value="white">Pokemon White</option>
-                                <option value="black2">Pokemon Black 2</option>
-                                <option value="white2">Pokemon White 2</option>
-                                <option value="x">Pokemon X</option>
-                                <option value="y">Pokemon Y</option>
-                                <option value="sun">Pokemon Sun</option>
-                                <option value="moon">Pokemon Moon</option>
-                                <option value="ultraSun">Pokemon Ultra Sun</option>
-                                <option value="ultraMoon">Pokemon Ultra Moon</option>
+                            <select name="gameId" class="form-select" aria-label="Default select example">
+                                <option value="1">Pokemon Gold</option>
+                                <option value="2">Pokemon Silver</option>
+                                <option value="3">Pokemon Crystal</option>
+                                <option value="4">Pokemon Leaf Green</option>
+                                <option value="5">Pokemon Fire Red</option>
+                                <option value="6">Pokemon Ruby</option>
+                                <option value="7">Pokemon Saphire</option>
+                                <option value="8">Pokemon Emerald</option>
+                                <option value="9">Pokemon Unbound</option>
+                                <option value="10">Pokemon Diamond</option>
+                                <option value="11">Pokemon Pearl</option>
+                                <option value="12">Pokemon Platinum</option>
+                                <option value="13">Pokemon Hearth Gold</option>
+                                <option value="14">Pokemon Soul Silver</option>
+                                <option value="15">Pokemon Black</option>
+                                <option value="16">Pokemon White</option>
+                                <option value="17">Pokemon Black 2</option>
+                                <option value="18">Pokemon White 2</option>
+                                <option value="19">Pokemon X</option>
+                                <option value="20">Pokemon Y</option>
+                                <option value="21">Pokemon Sun</option>
+                                <option value="22">Pokemon Moon</option>
+                                <option value="23">Pokemon Ultra Sun</option>
+                                <option value="24">Pokemon Ultra Moon</option>
                             </select>
                             <input type="submit" name="submit" value="submit"/>
                         </form>

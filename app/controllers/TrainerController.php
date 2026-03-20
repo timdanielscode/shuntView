@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Api;
+use app\models\Pokemon;
 use core\Session;
 
 class TrainerController extends Controller {
@@ -22,6 +23,17 @@ class TrainerController extends Controller {
 
     public function store($request) {
 
-        print_r($request);
+        $id = explode('?', $request['id']);
+
+        Pokemon::insert([
+            
+            'id' => Session::get('pokemonId'),
+            'name' => Session::get("pokemonName"),
+            'created_at' => date("Y-m-d H:i:s"),
+            'gameId' => $request['gameId'],
+            'userId' => $id[0]
+        ]);
+
+        redirect('/trainer/' . $id[0]);
     }
 }

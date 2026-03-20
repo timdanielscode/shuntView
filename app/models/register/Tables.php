@@ -9,6 +9,7 @@ class Tables {
 
     public $tables = [
 
-        "User" => "users"
+        "User" => "users",
+        "Pokemon" => "pokemon"
     ];
 }
