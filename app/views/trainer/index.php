@@ -43,11 +43,10 @@
                     <div class="col">
 
                         <?php if(!empty($pokemon) === true) { ?>
-
                             <?php foreach($pokemon as $key => $value) { ?>
-
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $value['id']; ?>.png"/>
-
+                                <form method="GET" action="/trainer/<?php echo $id[0]; ?>">
+                                    <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $value['id']; ?>.png"/></button>
+                                </form>
                             <?php } ?>
 
                         <?php } else { ?>
@@ -65,9 +64,9 @@
                     <div class="col">
                         <div class="pokemonSprites">
                             <?php for($i = 1; $i <= 807; $i++) { ?>
-                            <form method="GET" action="/trainer/<?php echo $id[0]; ?>/new">
-                                <button type="submit" name="pokemonId" value="<?php echo $i; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $i; ?>.png"/></button>
-                            </form>
+                                <form method="GET" action="/trainer/<?php echo $id[0]; ?>/new">
+                                    <button type="submit" name="pokemonId" value="<?php echo $i; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $i; ?>.png"/></button>
+                                </form>
                             <?php } ?>
                         </div>
                     </div>
