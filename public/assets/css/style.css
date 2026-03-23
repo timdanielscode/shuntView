@@ -1,0 +1,24 @@
+.pokemonSpritesContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+.pokemonSprites {
+    position: absolute;
+    top: 0;
+}
+.pokemonSprites form {
+    display: inline-block;
+    width: 32%;
+}
+
+.pokemonSprites form button {
+    background: transparent;
+    border: 0;
+}
+
+.pokemonSprites form button img {
+    padding: 0;
+    margin: 0;
+}
