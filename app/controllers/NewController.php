@@ -31,6 +31,7 @@ class NewController extends Controller {
             'name' => Session::get("pokemonName"),
             'encounters' => 0,
             'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
             'gameId' => $request['gameId'],
             'userId' => $id[0]
         ]);

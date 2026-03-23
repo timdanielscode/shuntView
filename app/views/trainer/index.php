@@ -60,10 +60,10 @@
                     </div>
                     <div class="col">
                         <form method="POST" action="/trainer/<?php echo $id[0]; ?>">
-                            <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php echo core\Session::get('pokemonId'); ?>.png"/></button>
-                            <input type="text" name="encounters" value="<?php echo $encounters['encounters']; ?>"/>
-                            <input type="hidden" name="pokemonId" value="<?php echo core\Session::get('pokemonId'); ?>"/>
-                            <input type="hidden" name="gameId" value=""/>
+                            <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php echo $pokemonId; ?>.png"/></button>
+                            <input type="text" name="encounters" value="<?php echo $encounters; ?>"/>
+                            <input type="hidden" name="pokemonId" value="<?php echo $pokemonId; ?>"/>
+                            <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
                             <input type="submit" name="submit" value="Save!"/>
                         </form>
                     </div>
