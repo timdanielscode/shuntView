@@ -47,6 +47,7 @@
                             <?php foreach($pokemon as $key => $value) { ?>
                                 <form method="GET" action="/trainer/<?php echo $id[0]; ?>">
                                     <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $value['id']; ?>.png"/></button>
+                                    <input type="hidden" name="gameId" value="<?php echo $value['gameId']; ?>"/>
                                 </form>
                             <?php } ?>
 
@@ -62,6 +63,7 @@
                             <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php echo core\Session::get('pokemonId'); ?>.png"/></button>
                             <input type="text" name="encounters" value="<?php echo $encounters['encounters']; ?>"/>
                             <input type="hidden" name="pokemonId" value="<?php echo core\Session::get('pokemonId'); ?>"/>
+                            <input type="hidden" name="gameId" value=""/>
                             <input type="submit" name="submit" value="Save!"/>
                         </form>
                     </div>

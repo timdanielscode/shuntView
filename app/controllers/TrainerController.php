@@ -14,8 +14,9 @@ class TrainerController extends Controller {
     public function index($request) {
 
         $this->_data['id'] = explode('?', $request['id']);
-        $this->_data['pokemon'] = DB::try()->select("id")->from("pokemon")->fetch();
-        $this->_data['encounters'] = DB::try()->select("encounters")->from("pokemon")->first();
+        $this->_data['pokemon'] = DB::try()->select("id", "gameId")->from("pokemon")->fetch();
+
+        $this->_data['encounters'] = DB::try()->select("encounters")->from("pokemon")->where("id", "=", $request["pokemonId"][0])->and("gameId", "=", $request["gameId"])->first();
 
         if(empty($request['pokemonId']) === true) {
 
@@ -23,16 +24,19 @@ class TrainerController extends Controller {
         }
 
         Session::set("pokemonId", $request['pokemonId']);
+        Session::set("gameId", $request['gameId']);
+
         
         return $this->view("trainer/index")->data($this->_data);
     }
 
     public function update($request) {
 
-        Pokemon::update(['id' => $request['pokemonId']], [
-                    
+        DB::try()->update('pokemon')->set([
+
             'encounters' => $request['encounters']
-        ]);
+        
+        ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', Session::get('gameId'))->run();
 
         redirect('/trainer/' . $request['id']);
     }
