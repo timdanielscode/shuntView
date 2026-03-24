@@ -58,7 +58,7 @@
 
                         <?php if(empty($pokemon) === true) { ?>
 
-                            <a href="/trainer/<?php echo $id[0]; ?>/new">Select new shunt</a>
+                            <a href="/trainer/<?php echo $id[0]; ?>/new" class="newShunt">Select new shunt</a>
 
                         <?php } ?>
 
@@ -79,15 +79,18 @@
                         <?php } ?>
                     </div>
                     <div class="col">
-                        <div class="pokemonSpritesContainer">
-                            <div class="pokemonSprites">
-                                <?php for($i = 1; $i <= 807; $i++) { ?>
-                                    <form method="GET" action="/trainer/<?php echo $id[0]; ?>/new">
-                                        <button type="submit" name="pokemonId" value="<?php echo $i; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $i; ?>.png"/></button>
-                                    </form>
-                                <?php } ?>
+
+                        <?php if(!empty($pokemon) === true) { ?>
+                            <div class="pokemonSpritesContainer">
+                                <div class="pokemonSprites">
+                                    <?php for($i = 1; $i <= 807; $i++) { ?>
+                                        <form method="GET" action="/trainer/<?php echo $id[0]; ?>/new">
+                                            <button type="submit" name="pokemonId" value="<?php echo $i; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $i; ?>.png"/></button>
+                                        </form>
+                                    <?php } ?>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
