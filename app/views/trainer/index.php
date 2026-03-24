@@ -43,14 +43,17 @@
 
                 <div class="row">
                     <div class="col">
-
-                        <?php if(!empty($pokemon) === true) { ?>
-                            <?php foreach($pokemon as $key => $value) { ?>
-                                <form method="GET" action="/trainer/<?php echo $id[0]; ?>">
-                                    <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $value['id']; ?>.png"/></button>
-                                    <input type="hidden" name="gameId" value="<?php echo $value['gameId']; ?>"/>
-                                </form>
-                            <?php } ?>
+                        <div class="pokemonSpritesContainer">
+                            <div class="pokemonSprites">
+                                <?php if(!empty($pokemon) === true) { ?>
+                                    <?php foreach($pokemon as $key => $value) { ?>
+                                            <form method="GET" action="/trainer/<?php echo $id[0]; ?>">
+                                                <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $value['id']; ?>.png"/></button>
+                                                <input type="hidden" name="gameId" value="<?php echo $value['gameId']; ?>"/>
+                                            </form>
+                                    <?php } ?>
+                                </div>
+                            </div>
 
                         <?php } else { ?>
 
@@ -65,10 +68,11 @@
 
                             <form method="POST" action="/trainer/<?php echo $id[0]; ?>">
                                 <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php echo $pokemonId; ?>.png"/></button>
-                                <input type="text" name="encounters" value="<?php echo $encounters; ?>"/>
                                 <input type="hidden" name="pokemonId" value="<?php echo $pokemonId; ?>"/>
                                 <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
-                                <input type="submit" name="submit" value="Save!"/>
+                                <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField"/>
+                                <input type="submit" name="submit" value="Save!" class="btn btn-primary saveButton"/>
+                                <input type="submit" name="submit" value="Shiny!" class="btn btn-outline-primary shinyButton"/>
                             </form>
 
                         <?php } ?>

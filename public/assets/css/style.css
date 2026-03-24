@@ -4,10 +4,12 @@
     height: 100%;
     overflow-x: hidden;
 }
+
 .pokemonSprites {
     position: absolute;
     top: 0;
 }
+
 .pokemonSprites form {
     display: inline-block;
     width: 32%;
@@ -21,4 +23,33 @@
 .pokemonSprites form button img {
     padding: 0;
     margin: 0;
+}
+
+.pokemonSprites form button img:hover {
+    background: rgba(82, 147, 249, 0.5);
+}
+
+.saveButton {
+    float: left;
+    margin-top: 20px;
+}
+
+.shinyButton {
+    margin-top: 20px;
+    float: left;
+    margin-left: 10px;
+}
+
+.encountersTextField {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#encounters {
+    border: 0;
+    background: transparent;
+}
+
+#encounters img {
+    width: 100%;
 }
