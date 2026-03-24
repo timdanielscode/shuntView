@@ -52,7 +52,7 @@
                             <?php if(!empty($rules) ) { echo validation\Errors::get($rules, "retypePassword"); } ?> 
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Sign up</button>
                     <input type="hidden" name="token" value="<?php core\Csrf::token(); ?>"/>
                 </form>
             </div>

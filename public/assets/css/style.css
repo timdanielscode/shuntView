@@ -53,3 +53,12 @@
 #encounters img {
     width: 100%;
 }
+
+.handhelds {
+    margin-bottom: 20px;
+}
+
+.selectButton {
+    float: left;
+    margin-top: 20px;
+}
