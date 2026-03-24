@@ -14,7 +14,7 @@ class TrainerController extends Controller {
     public function index($request) {
 
         $this->_data['id'] = explode('?', $request['id']);
-        $this->_data['pokemon'] = DB::try()->select("id", "gameId", "shiny")->from("pokemon")->fetch();
+        $this->_data['pokemon'] = DB::try()->select("id", "gameId", "shiny")->from("pokemon")->order("updated_at")->desc()->fetch();
 
         if(!empty($this->_data['pokemon']) === true) {
 
