@@ -14,7 +14,7 @@ class Pokemon extends Model {
             return DB::try()->select("id")->from("pokemon")->order("updated_at")->desc()->first()[0];
         } else {
 
-            return $request['pokemonId'][0];
+            return $request['pokemonId'];
         }
     }
 
@@ -25,7 +25,7 @@ class Pokemon extends Model {
             return DB::try()->select("gameId")->from("pokemon")->order("updated_at")->desc()->first()[0];
         } else {
 
-            return DB::try()->select("gameId")->from("pokemon")->where("id", "=", $request["pokemonId"][0])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("gameId")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
         }
     }
 
@@ -37,7 +37,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("encounters")->from("pokemon")->where("id", "=", $request["pokemonId"][0])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("encounters")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
         }
     }
 }

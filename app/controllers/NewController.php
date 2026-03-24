@@ -12,13 +12,16 @@ class NewController extends Controller {
 
     public function index($request) {
 
-        $api = new Api();
-        $pokemonName = $api->getName($request['pokemonId']);
+        if(!empty($request['pokemonId']) === true) {
 
-        Session::set("pokemonId", $request['pokemonId']);
-        Session::set("pokemonName", $pokemonName);
+            $api = new Api();
+            $pokemonName = $api->getName($request['pokemonId']);
 
-        return $this->view("new/index")->data();
+            $this->_data['pokemonId'] = $request['pokemonId'];
+            $this->_data['pokemonName'] = $pokemonName;
+        }
+
+        return $this->view("new/index")->data($this->_data);
     }
 
     public function store($request) {
