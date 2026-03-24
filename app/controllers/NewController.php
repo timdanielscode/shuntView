@@ -34,6 +34,7 @@ class NewController extends Controller {
             'id' => $request['pokemonId'],
             'name' => Session::get('pokemonName'),
             'encounters' => 0,
+            'shiny' => 0,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
             'gameId' => $request['gameId'],

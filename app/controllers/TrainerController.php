@@ -28,13 +28,26 @@ class TrainerController extends Controller {
 
     public function update($request) {
 
-        DB::try()->update('pokemon')->set([
+        if(isset($_POST['save']) === true) {
 
-            'encounters' => $request['encounters'],
-            'updated_at' => date("Y-m-d H:i:s")
+            DB::try()->update('pokemon')->set([
+
+                'encounters' => $request['encounters'],
+                'updated_at' => date("Y-m-d H:i:s")
         
-        ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
 
-        redirect('/trainer/' . $request['id']);
+            redirect('/trainer/' . $request['id']);
+
+        } else if(isset($_POST['shiny']) === true) {
+
+            DB::try()->update('pokemon')->set([
+
+                'shiny' => 1,
+        
+            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+
+            redirect('/trainer/' . $request['id']);
+        }
     }
 }

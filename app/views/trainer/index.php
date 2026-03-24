@@ -72,8 +72,8 @@
                                 <input type="hidden" name="pokemonId" value="<?php echo $pokemonId; ?>"/>
                                 <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
                                 <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField"/>
-                                <input type="submit" name="submit" value="Save!" class="btn btn-primary saveButton"/>
-                                <input type="submit" name="submit" value="Shiny!" class="btn btn-outline-primary shinyButton"/>
+                                <input type="submit" name="save" value="Save!" class="btn btn-primary saveButton"/>
+                                <input type="submit" name="shiny" value="Shiny!" class="btn btn-outline-primary shinyButton"/>
                             </form>
 
                         <?php } ?>
