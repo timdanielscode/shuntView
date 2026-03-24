@@ -17,8 +17,9 @@ class NewController extends Controller {
             $api = new Api();
             $pokemonName = $api->getName($request['pokemonId']);
 
+            Session::set('pokemonName', $pokemonName);
+
             $this->_data['pokemonId'] = $request['pokemonId'];
-            $this->_data['pokemonName'] = $pokemonName;
         }
 
         return $this->view("new/index")->data($this->_data);
@@ -30,8 +31,8 @@ class NewController extends Controller {
 
         Pokemon::insert([
             
-            'id' => Session::get('pokemonId'),
-            'name' => Session::get("pokemonName"),
+            'id' => $request['pokemonId'],
+            'name' => Session::get('pokemonName'),
             'encounters' => 0,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
