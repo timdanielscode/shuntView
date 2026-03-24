@@ -5,11 +5,18 @@ class Encounters {
         return document.getElementById("encounters");
     }
 
+    getInputField() {
+
+        return document.getElementsByClassName("encountersTextField")[0];
+    }
+
     increaseEncountersButtonValue() {
+
+        var inputField = this.getInputField();
 
         this.getEncountersButton().addEventListener("click", function() {
 
-            this.nextElementSibling.value++;
+            inputField.value++;
         });
     }
 }
