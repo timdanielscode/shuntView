@@ -30,24 +30,13 @@ class TrainerController extends Controller {
 
         if(isset($_POST['save']) === true) {
 
-            DB::try()->update('pokemon')->set([
-
-                'encounters' => $request['encounters'],
-                'updated_at' => date("Y-m-d H:i:s")
-        
-            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
-
-            redirect('/trainer/' . $request['id']);
+            Pokemon::updateEncounters($request);
 
         } else if(isset($_POST['shiny']) === true) {
 
-            DB::try()->update('pokemon')->set([
-
-                'shiny' => 1,
-        
-            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
-
-            redirect('/trainer/' . $request['id']);
+            Pokemon::updateShinyStatus($request);
         }
+
+        redirect('/trainer/' . $request['id']);
     }
 }
