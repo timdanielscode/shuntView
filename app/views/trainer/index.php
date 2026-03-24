@@ -40,7 +40,6 @@
             <?php } ?>
 
             <div class="container text-center">
-
                 <div class="row">
                     <div class="col">
                         <div class="pokemonSpritesContainer">
@@ -48,7 +47,7 @@
                                 <?php if(!empty($pokemon) === true) { ?>
                                     <?php foreach($pokemon as $key => $value) { ?>
                                         <form method="GET" action="/trainer/<?php echo $id[0]; ?>">
-                                            <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $value['id']; ?>.png"/></button>
+                                            <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php if($value['shiny'] === 1) { echo 'shiny/'; } ?><?php echo $value['id']; ?>.png"/></button>
                                             <input type="hidden" name="gameId" value="<?php echo $value['gameId']; ?>"/>
                                         </form>
                                     <?php } ?>
