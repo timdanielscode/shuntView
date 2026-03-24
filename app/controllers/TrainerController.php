@@ -21,6 +21,7 @@ class TrainerController extends Controller {
             $this->_data['pokemonId'] = Pokemon::getPokemonId($request);
             $this->_data['gameId'] = Pokemon::getGameId($request);
             $this->_data['encounters'] = Pokemon::getEncounters($request);
+            $this->_data['shiny'] = Pokemon::getShinyStatus($request);
         }
 
         return $this->view("trainer/index")->data($this->_data);

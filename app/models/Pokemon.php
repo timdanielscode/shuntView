@@ -29,6 +29,17 @@ class Pokemon extends Model {
         }
     }
 
+    public static function getShinyStatus($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("shiny")->from("pokemon")->order("updated_at")->desc()->first()[0];
+        } else {
+
+            return DB::try()->select("shiny")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
     public static function getEncounters($request) {
 
         if(empty($request['pokemonId']) === true) {

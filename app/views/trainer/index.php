@@ -72,12 +72,14 @@
                         <?php if(!empty($pokemon) === true) { ?>
 
                             <form method="POST" action="/trainer/<?php echo $id[0]; ?>">
-                                <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php echo $pokemonId; ?>.png"/></button>
+                                <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>">
+                                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if($shiny === 1) { echo 'shiny/'; } ?><?php echo $pokemonId; ?>.png"/>
+                                </button>
                                 <input type="hidden" name="pokemonId" value="<?php echo $pokemonId; ?>"/>
                                 <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
                                 <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField"/>
-                                <input type="submit" name="save" value="Save!" class="btn btn-primary saveButton"/>
-                                <input type="submit" name="shiny" value="Shiny!" class="btn btn-outline-primary shinyButton"/>
+                                <input type="submit" name="save" value="Save" class="btn btn-primary saveButton"/>
+                                <input type="submit" name="shiny" value="Shiny" class="btn btn-outline-primary shinyButton"/>
                             </form>
 
                         <?php } ?>
