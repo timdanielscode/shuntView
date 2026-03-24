@@ -52,6 +52,30 @@ class Pokemon extends Model {
         }
     }
 
+    public static function getStartedShuntDate($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("created_at")->from("pokemon")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("created_at")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
+    public static function getLastShuntDate($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("updated_at")->from("pokemon")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("updated_at")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
     public static function getGame($request) {
 
         if(empty($request['pokemonId']) === true) {
