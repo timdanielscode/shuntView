@@ -53,9 +53,7 @@
                     </div>
                     <div class="col">
                         
-                        <?php if(!empty($pokemonId) ) { ?>
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php echo core\Session::get('pokemonId'); ?>.png" class="w-100"/>
-                        <?php } ?>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if(!empty($pokemonId) ) { echo $pokemonId; } else { echo '1'; } ?>.png" class="w-100"/>
 
                     </div>
                     <div class="col">
