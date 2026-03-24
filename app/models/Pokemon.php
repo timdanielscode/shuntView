@@ -78,8 +78,24 @@ class Pokemon extends Model {
 
         DB::try()->update('pokemon')->set([
 
-            'shiny' => 1,
+            'shiny' => Pokemon::checkGetShinyStatus($request),
+            'updated_at' => date("Y-m-d H:i:s")
         
         ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+    }
+
+    private static function checkGetShinyStatus($request) {
+
+        if(Pokemon::getShinyStatus($request) === 1) {
+
+            $status = 0;
+
+
+        } else if(Pokemon::getShinyStatus($request) === 0) {
+
+            $status = 1;
+        }
+
+        return $status;
     }
 }
