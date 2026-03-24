@@ -14,7 +14,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">
-                    <img class="px-3" src="/assets/logo.png" class="d-inline-block align-text-top"/>
+                    <img class="px-3" src="/assets/img/logo.png" class="d-inline-block align-text-top"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,12 @@
                                 <?php if(!empty($pokemon) === true) { ?>
                                     <?php foreach($pokemon as $key => $value) { ?>
                                         <form method="GET" action="/trainer/<?php echo $id[0]; ?>">
-                                            <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php if($value['shiny'] === 1) { echo 'shiny/'; } ?><?php echo $value['id']; ?>.png"/></button>
+                                            <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>">
+                                                <?php if($value['shiny'] === 1) { ?> 
+                                                    <img class="particles" src="/assets/img/particles.png"/>
+                                                <?php } ?>
+                                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php if($value['shiny'] === 1) { echo 'shiny/'; } ?><?php echo $value['id']; ?>.png"/>
+                                            </button>
                                             <input type="hidden" name="gameId" value="<?php echo $value['gameId']; ?>"/>
                                         </form>
                                     <?php } ?>
