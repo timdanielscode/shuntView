@@ -52,6 +52,18 @@ class Pokemon extends Model {
         }
     }
 
+    public static function getGame($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->where("pokemon.id", "=", $request["pokemonId"])->and("pokemon.gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
     public static function updateEncounters($request) {
 
         DB::try()->update('pokemon')->set([
