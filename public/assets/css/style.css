@@ -27,8 +27,13 @@
     margin: 0;
 }
 
-.pokemonSprites form button img:hover {
-    background: rgba(82, 147, 249, 0.1);
+.spriteContainer {
+    width: 100%;
+    padding: 10px;
+}
+
+.spriteContainer:hover {
+    background: rgba(145, 145, 145, 0.06);
 }
 
 .saveButton {
@@ -70,11 +75,12 @@
 }
 
 .particles {
-    width: 35px;
+    width: 15px !important;
+    height: 15px !important;
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -999;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
 }
 
 .encounterForm {

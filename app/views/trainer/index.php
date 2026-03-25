@@ -41,10 +41,12 @@
                                     <?php foreach($pokemon as $key => $value) { ?>
                                         <form method="GET" action="/trainer/<?php echo $id[0]; ?>">
                                             <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>">
-                                                <?php if($value['shiny'] === 1) { ?> 
-                                                    <img class="particles" src="/assets/img/particles.png"/>
-                                                <?php } ?>
-                                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php if($value['shiny'] === 1) { echo 'shiny/'; } ?><?php echo $value['id']; ?>.png"/>
+                                                <div class="spriteContainer">
+                                                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?php if($value['shiny'] === 1) { echo 'shiny/'; } ?><?php echo $value['id']; ?>.png"/>
+                                                    <?php if($value['shiny'] === 1) { ?> 
+                                                        <img class="particles" src="/assets/img/particles.png"/>
+                                                    <?php } ?>
+                                                </div>
                                             </button>
                                             <input type="hidden" name="gameId" value="<?php echo $value['gameId']; ?>"/>
                                         </form>
@@ -72,7 +74,7 @@
                                 <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
                                 <label class="form-label d-block m-0"><b>On:</b> <?php echo $handheld; ?></label>
                                 <label class="form-label d-block m-0"><b>Pokemon:</b> <?php echo $game; ?></label>
-                                <label class="form-label d-block m-0"><b>Shunt started at:</b> <?php echo date('d-m-Y H:i', strtotime($startedShuntDate) ); ?></label>
+                                <label class="form-label d-block m-0"><b>Shunt added at:</b> <?php echo date('d-m-Y H:i', strtotime($startedShuntDate) ); ?></label>
                                 <label class="form-label d-block mb-3"><b>Last shunted at:</b> <?php if(date('d-m-Y H:i', strtotime($startedShuntDate) ) === date('d-m-Y H:i', strtotime($lastShuntDate) )) { echo 'Not started yet.'; } else { echo date('d-m-Y H:i', strtotime($lastShuntDate) ); } ?></label>
                                 <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField"/>
                                 <input type="submit" name="save" value="Save" class="btn btn-primary saveButton"/>
@@ -85,9 +87,11 @@
                         <?php if(!empty($pokemon) === true) { ?>
                             <div class="pokemonSpritesContainer">
                                 <div class="pokemonSprites">
-                                    <?php for($i = 1; $i <= 807; $i++) { ?>
+                                    <?php for($i = 1; $i <= 1025; $i++) { ?>
                                         <form method="GET" action="/trainer/<?php echo $id[0]; ?>/new">
-                                            <button type="submit" name="pokemonId" value="<?php echo $i; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/<?php echo $i; ?>.png"/></button>
+                                            <div class="spriteContainer">
+                                                <button type="submit" name="pokemonId" value="<?php echo $i; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?php echo $i; ?>.png" class="pokemonSprite"/></button>
+                                            </div>
                                         </form>
                                     <?php } ?>
                                 </div>
