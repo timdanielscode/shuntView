@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\Api;
 use app\models\Pokemon;
 use core\Session;
 use database\DB;
@@ -18,11 +17,13 @@ class TrainerController extends Controller {
 
         if(!empty($this->_data['pokemon']) === true) {
 
+            $this->_data['pokemonName'] = Pokemon::getName($request);
             $this->_data['pokemonId'] = Pokemon::getPokemonId($request);
             $this->_data['gameId'] = Pokemon::getGameId($request);
             $this->_data['encounters'] = Pokemon::getEncounters($request);
             $this->_data['shiny'] = Pokemon::getShinyStatus($request);
             $this->_data['game'] = Pokemon::getGame($request);
+            $this->_data['handheld'] = Pokemon::getHandHeld($request);
             $this->_data['startedShuntDate'] = Pokemon::getStartedShuntDate($request);
             $this->_data['lastShuntDate'] = Pokemon::getLastShuntDate($request);
         }

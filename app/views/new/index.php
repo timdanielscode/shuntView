@@ -53,19 +53,20 @@
                     </div>
                     <div class="col">
                         
+                        <h1><?php echo ucfirst(core\Session::get('pokemonName')); ?></h1>
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if(!empty($pokemonId) ) { echo $pokemonId; } else { echo '1'; } ?>.png" class="w-100"/>
 
                     </div>
                     <div class="col">
                         <form method="POST" action="">
-                            <select name="handheld" class="form-select handhelds">
-                                <option value="gbc">GBC</option>
-                                <option value="gba">GBA</option>
-                                <option value="ds">DS / DS lite</option>
-                                <option value="3ds">3DS</option>
+                            <select name="handheldId" class="form-select handhelds" size="4">
+                                <option value="1" selected="selected">GBC</option>
+                                <option value="2">GBA</option>
+                                <option value="3">DS / DS Lite</option>
+                                <option value="4">3DS</option>
                             </select>
-                            <select name="gameId" class="form-select games">
-                                <option value="1">Pokemon Gold</option>
+                            <select name="gameId" class="form-select games" size="10">
+                                <option value="1" selected="selected">Pokemon Gold</option>
                                 <option value="2">Pokemon Silver</option>
                                 <option value="3">Pokemon Crystal</option>
                                 <option value="4">Pokemon Leaf Green</option>
@@ -85,10 +86,12 @@
                                 <option value="18">Pokemon White 2</option>
                                 <option value="19">Pokemon X</option>
                                 <option value="20">Pokemon Y</option>
-                                <option value="21">Pokemon Sun</option>
-                                <option value="22">Pokemon Moon</option>
-                                <option value="23">Pokemon Ultra Sun</option>
-                                <option value="24">Pokemon Ultra Moon</option>
+                                <option value="21">Pokemon Omega Ruby</option>
+                                <option value="22">Pokemon Alpha Saphire</option>
+                                <option value="23">Pokemon Sun</option>
+                                <option value="24">Pokemon Moon</option>
+                                <option value="25">Pokemon Ultra Sun</option>
+                                <option value="26">Pokemon Ultra Moon</option>
                             </select>
                             <input type="submit" name="submit" value="Select" class="btn btn-primary selectButton"/>
                         </form>

@@ -38,10 +38,9 @@ class NewController extends Controller {
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
             'gameId' => $request['gameId'],
+            'handheldId' => $request['handheldId'],
             'userId' => $id[0]
         ]);
-
-        Session::set('success', 'You have successfully added a new shunt!');
 
         redirect('/trainer/' . $id[0]);
     }

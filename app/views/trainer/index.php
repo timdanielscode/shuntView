@@ -32,13 +32,6 @@
             </div>
         </nav>
         <section class="p-5">
-
-            <?php if(core\Session::exists("success") === true) { ?>
-                <div class="alert alert-primary text-center mt-5" role="alert">
-                    <?php core\Alert::message("success"); ?>
-                </div>
-            <?php } ?>
-
             <div class="container text-center">
                 <div class="row">
                     <div class="col">
@@ -70,16 +63,17 @@
                     <div class="col">
 
                         <?php if(!empty($pokemon) === true) { ?>
-
+                            <h1 class="text-start"><?php echo ucfirst($pokemonName); ?></h1>
                             <form method="POST" action="/trainer/<?php echo $id[0]; ?>" class="encounterForm">
                                 <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>">
                                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if($shiny === 1) { echo 'shiny/'; } ?><?php echo $pokemonId; ?>.png"/>
                                 </button>
                                 <input type="hidden" name="pokemonId" value="<?php echo $pokemonId; ?>"/>
                                 <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
+                                <label class="form-label d-block m-0"><b>On:</b> <?php echo $handheld; ?></label>
                                 <label class="form-label d-block m-0"><b>Pokemon:</b> <?php echo $game; ?></label>
                                 <label class="form-label d-block m-0"><b>Shunt started at:</b> <?php echo date('d-m-Y H:i', strtotime($startedShuntDate) ); ?></label>
-                                <label class="form-label d-block mb-3"><b>Last shunted at:</b> <?php echo date('d-m-Y H:i', strtotime($lastShuntDate) ); ?></label>
+                                <label class="form-label d-block mb-3"><b>Last shunted at:</b> <?php if(date('d-m-Y H:i', strtotime($startedShuntDate) ) === date('d-m-Y H:i', strtotime($lastShuntDate) )) { echo 'Not started yet.'; } else { echo date('d-m-Y H:i', strtotime($lastShuntDate) ); } ?></label>
                                 <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField"/>
                                 <input type="submit" name="save" value="Save" class="btn btn-primary saveButton"/>
                                 <input type="submit" name="shiny" value="Shiny" class="btn btn-outline-primary shinyButton"/>

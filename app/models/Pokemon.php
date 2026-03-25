@@ -6,6 +6,21 @@ use database\DB;
 
 class Pokemon extends Model {
 
+    public static function getName($request) {
+
+        $api = new Api();
+        
+        if(empty($request['pokemonId']) === true) {
+
+            $id = DB::try()->select("id")->from("pokemon")->order("updated_at")->desc()->first()[0];
+        } else {
+
+            $id = $request['pokemonId'];
+        }
+
+        return $api->getName($id);
+    }
+
     public static function getPokemonId($request) {
 
         if(empty($request['pokemonId']) === true) {
@@ -85,6 +100,18 @@ class Pokemon extends Model {
         } else {
 
             return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->where("pokemon.id", "=", $request["pokemonId"])->and("pokemon.gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
+    public static function getHandheld($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("handhelds.name")->from("handhelds")->join("pokemon")->on("handhelds.id", "=", "pokemon.handheldId")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("handhelds.name")->from("handhelds")->join("pokemon")->on("handhelds.id", "=", "pokemon.handheldId")->where("pokemon.id", "=", $request["pokemonId"])->and("pokemon.gameId", "=", $request["gameId"])->first()[0];
         }
     }
 
