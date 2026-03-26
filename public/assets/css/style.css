@@ -94,3 +94,11 @@
 .hpIv {
     margin-left: 12px;
 }
+
+.is-invalid {
+    border-color: #FF0000 !important;
+}
+
+.is-invalid:focus-visible {
+    outline: 0;
+}

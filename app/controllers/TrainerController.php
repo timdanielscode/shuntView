@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Pokemon;
 use core\Session;
 use database\DB;
+use validation\Rules;
 
 class TrainerController extends Controller {
 
@@ -14,6 +15,14 @@ class TrainerController extends Controller {
 
         $this->_data['id'] = explode('?', $request['id']);
         $this->_data['pokemon'] = DB::try()->select("id", "gameId", "shiny")->from("pokemon")->order("updated_at")->desc()->fetch();
+        $this->_data[] = $this->getData($request);
+
+        $this->_data['rules'] = [];
+
+        return $this->view("trainer/index")->data($this->_data);
+    }
+
+    private function getData($request) {
 
         if(!empty($this->_data['pokemon']) === true) {
 
@@ -34,27 +43,54 @@ class TrainerController extends Controller {
             $this->_data['lastShuntDate'] = Pokemon::getLastShuntDate($request);
         }
 
-        return $this->view("trainer/index")->data($this->_data);
+        return $this->_data;
     }
 
     public function update($request) {
 
+        $this->updateData($request);
+        $this->updateShinyStatus($request);
+    }
+
+
+    private function updateData($request) {
+
         if(isset($_POST['save']) === true) {
 
             Pokemon::updateEncounters($request);
-            Pokemon::updateHp($request);
-            Pokemon::updateDef($request);
-            Pokemon::updateAtt($request);
-            Pokemon::updateSpd($request);
-            Pokemon::updateSpa($request);
-            Pokemon::updateSpe($request);
 
-        } else if(isset($_POST['shiny']) === true) {
+            redirect('/trainer/' . $request['id']);
+        }
+    }
 
-            Pokemon::updateShinyStatus($request);
-        } 
+    private function updateShinyStatus($request) {
 
+        if(isset($_POST['shiny']) === true) {
 
-        redirect('/trainer/' . $request['id']);
+            $rules = new Rules();
+            
+            if($rules->shiny($request['hp'], $request['def'], $request['att'], $request['att'], $request['spd'], $request['spa'], $request['spe'])->validated()) {
+
+                Pokemon::updateHp($request);
+                Pokemon::updateDef($request);
+                Pokemon::updateAtt($request);
+                Pokemon::updateSpd($request);
+                Pokemon::updateSpa($request);
+                Pokemon::updateSpe($request);
+
+                Pokemon::updateShinyStatus($request);
+
+                redirect('/trainer/' . $request['id']);
+
+            } else {
+
+                $this->_data['id'] = explode('?', $request['id']);
+                $this->_data['pokemon'] = DB::try()->select("id", "gameId", "shiny")->from("pokemon")->order("updated_at")->desc()->fetch();
+
+                $this->_data[] = $this->getData($request);
+                $this->_data['rules'] = $rules->errors;
+                return $this->view("trainer/index")->data($this->_data);
+            }
+        }
     }
 }
