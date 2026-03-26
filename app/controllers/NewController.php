@@ -31,7 +31,7 @@ class NewController extends Controller {
 
         Pokemon::insert([
             
-            'id' => $request['pokemonId'],
+            'pokemonId' => $request['pokemonId'],
             'name' => Session::get('pokemonName'),
             'encounters' => 0,
             'shiny' => 0,

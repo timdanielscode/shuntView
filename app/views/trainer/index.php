@@ -39,16 +39,23 @@
                             <div class="pokemonSprites">
                                 <?php if(!empty($pokemon) === true) { ?>
                                     <?php foreach($pokemon as $key => $value) { ?>
-                                        <form method="GET" action="/trainer/<?php echo $id[0]; ?>">
-                                            <button type="submit" name="pokemonId" value="<?php echo $value['id']; ?>">
+                                        <form method="GET" action="/trainer/<?php echo $userId[0]; ?>">
+                                            <button type="submit" name="pokemonId" value="<?php echo $value['pokemonId']; ?>">
                                                 <div class="spriteContainer">
-                                                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?php if($value['shiny'] === 1) { echo 'shiny/'; } ?><?php echo $value['id']; ?>.png"/>
+                                                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?php if($value['shiny'] === 1) { echo 'shiny/'; } ?><?php echo $value['pokemonId']; ?>.png"/>
                                                     <?php if($value['shiny'] === 1) { ?> 
                                                         <img class="particles" src="/assets/img/particles.png"/>
                                                     <?php } ?>
                                                 </div>
                                             </button>
+                                            <input type="hidden" name="ID" value="<?php echo $value['id']; ?>"/>
                                             <input type="hidden" name="gameId" value="<?php echo $value['gameId']; ?>"/>
+                                            <input type="hidden" name="hp" value="<?php echo $value['hp']; ?>"/>
+                                            <input type="hidden" name="def" value="<?php echo $value['def']; ?>"/>
+                                            <input type="hidden" name="att" value="<?php echo $value['att']; ?>"/>
+                                            <input type="hidden" name="spd" value="<?php echo $value['spd']; ?>"/>
+                                            <input type="hidden" name="spa" value="<?php echo $value['spa']; ?>"/>
+                                            <input type="hidden" name="spe" value="<?php echo $value['spe']; ?>"/>
                                         </form>
                                     <?php } ?>
                                 <?php } ?>
@@ -57,7 +64,7 @@
 
                         <?php if(empty($pokemon) === true) { ?>
 
-                            <a href="/trainer/<?php echo $id[0]; ?>/new" class="newShunt">Select new shunt</a>
+                            <a href="/trainer/<?php echo $userId[0]; ?>/new" class="newShunt">Select new shunt</a>
 
                         <?php } ?>
 
@@ -66,11 +73,11 @@
 
                         <?php if(!empty($pokemon) === true) { ?>
                             <h1 class="text-start"><?php echo ucfirst($pokemonName); ?></h1>
-                            <form method="POST" action="/trainer/<?php echo $id[0]; ?>" class="encounterForm">
+                            <form method="POST" action="/trainer/<?php echo $userId[0]; ?>" class="encounterForm">
                                 <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>">
                                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if($shiny === 1) { echo 'shiny/'; } ?><?php echo $pokemonId; ?>.png"/>
                                 </button>
-                                <input type="hidden" name="pokemonId" value="<?php echo $pokemonId; ?>"/>
+                                <input type="hidden" name="ID" value="<?php echo $id; ?>"/>
                                 <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
                                 <label class="form-label d-block m-0"><b>On:</b> <?php echo $handheld; ?></label>
                                 <label class="form-label d-block mb-2"><b>Pokemon:</b> <?php echo $game; ?></label>
@@ -104,7 +111,7 @@
                             <div class="pokemonSpritesContainer">
                                 <div class="pokemonSprites">
                                     <?php for($i = 1; $i <= 1025; $i++) { ?>
-                                        <form method="GET" action="/trainer/<?php echo $id[0]; ?>/new">
+                                        <form method="GET" action="/trainer/<?php echo $userId[0]; ?>/new">
                                             <div class="spriteContainer">
                                                 <button type="submit" name="pokemonId" value="<?php echo $i; ?>"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?php echo $i; ?>.png" class="pokemonSprite"/></button>
                                             </div>

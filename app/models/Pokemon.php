@@ -12,7 +12,7 @@ class Pokemon extends Model {
         
         if(empty($request['pokemonId']) === true) {
 
-            $id = DB::try()->select("id")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            $id = DB::try()->select("pokemonId")->from("pokemon")->order("updated_at")->desc()->first()[0];
         } else {
 
             $id = $request['pokemonId'];
@@ -21,12 +21,24 @@ class Pokemon extends Model {
         return $api->getName($id);
     }
 
-    public static function getPokemonId($request) {
+    public static function getId($request) {
 
         if(empty($request['pokemonId']) === true) {
 
 
             return DB::try()->select("id")->from("pokemon")->order("updated_at")->desc()->first()[0];
+        } else {
+
+            return $request['ID'];
+        }
+    }
+
+    public static function getPokemonId($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+
+            return DB::try()->select("pokemonId")->from("pokemon")->order("updated_at")->desc()->first()[0];
         } else {
 
             return $request['pokemonId'];
@@ -40,7 +52,7 @@ class Pokemon extends Model {
             return DB::try()->select("gameId")->from("pokemon")->order("updated_at")->desc()->first()[0];
         } else {
 
-            return DB::try()->select("gameId")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("gameId")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -51,7 +63,7 @@ class Pokemon extends Model {
             return DB::try()->select("shiny")->from("pokemon")->order("updated_at")->desc()->first()[0];
         } else {
 
-            return DB::try()->select("shiny")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("shiny")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -63,7 +75,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("encounters")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("encounters")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -75,7 +87,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("hp")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("hp")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -87,7 +99,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("def")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("def")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -99,7 +111,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("att")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("att")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -111,7 +123,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("spd")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("spd")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -123,7 +135,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("spa")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("spa")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -135,7 +147,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("spe")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("spe")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -147,7 +159,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("created_at")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("created_at")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -159,7 +171,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("updated_at")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("updated_at")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -171,7 +183,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->where("pokemon.id", "=", $request["pokemonId"])->and("pokemon.gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->where("pokemon.id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -183,7 +195,7 @@ class Pokemon extends Model {
 
         } else {
 
-            return DB::try()->select("handhelds.name")->from("handhelds")->join("pokemon")->on("handhelds.id", "=", "pokemon.handheldId")->where("pokemon.id", "=", $request["pokemonId"])->and("pokemon.gameId", "=", $request["gameId"])->first()[0];
+            return DB::try()->select("handhelds.name")->from("handhelds")->join("pokemon")->on("handhelds.id", "=", "pokemon.handheldId")->where("pokemon.id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -194,7 +206,7 @@ class Pokemon extends Model {
             'encounters' => $request['encounters'],
             'updated_at' => date("Y-m-d H:i:s")
         
-        ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+        ])->where('id', "=", $request['ID'])->run();
     }
 
     public static function updateHp($request) {
@@ -205,7 +217,7 @@ class Pokemon extends Model {
 
                 'hp' => $request['hp']
             
-            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+            ])->where('id', "=", $request['ID'])->run();
         }
     }
 
@@ -217,7 +229,7 @@ class Pokemon extends Model {
 
                 'def' => $request['def']
             
-            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+            ])->where('id', "=", $request['ID'])->run();
         }
     }
 
@@ -229,7 +241,7 @@ class Pokemon extends Model {
 
                 'att' => $request['att']
             
-            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+            ])->where('id', "=", $request['ID'])->run();
         }
     }
 
@@ -241,7 +253,7 @@ class Pokemon extends Model {
 
                 'spd' => $request['spd']
             
-            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+            ])->where('id', "=", $request['ID'])->run();
         }
     }
 
@@ -253,7 +265,7 @@ class Pokemon extends Model {
 
                 'spa' => $request['spa']
             
-            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+            ])->where('id', "=", $request['ID'])->run();
         }
     }
 
@@ -265,7 +277,7 @@ class Pokemon extends Model {
 
                 'spe' => $request['spe']
             
-            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+            ])->where('id', "=", $request['ID'])->run();
         }
     }
 
@@ -276,17 +288,17 @@ class Pokemon extends Model {
             'shiny' => Pokemon::checkGetShinyStatus($request),
             'updated_at' => date("Y-m-d H:i:s")
         
-        ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+        ])->where('id', "=", $request['ID'])->run();
     }
 
     private static function checkGetShinyStatus($request) {
 
-        if(Pokemon::getShinyStatus($request) === 1) {
+        if(self::getShinyStatus($request) === 1) {
 
             $status = 0;
 
 
-        } else if(Pokemon::getShinyStatus($request) === 0) {
+        } else if(self::getShinyStatus($request) === 0) {
 
             $status = 1;
         }
