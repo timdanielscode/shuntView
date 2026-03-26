@@ -21,6 +21,12 @@ class TrainerController extends Controller {
             $this->_data['pokemonId'] = Pokemon::getPokemonId($request);
             $this->_data['gameId'] = Pokemon::getGameId($request);
             $this->_data['encounters'] = Pokemon::getEncounters($request);
+            $this->_data['hp'] = Pokemon::getHp($request);
+            $this->_data['def'] = Pokemon::getDef($request);
+            $this->_data['att'] = Pokemon::getAtt($request);
+            $this->_data['spd'] = Pokemon::getSpd($request);
+            $this->_data['spa'] = Pokemon::getSpa($request);
+            $this->_data['spe'] = Pokemon::getSpe($request);
             $this->_data['shiny'] = Pokemon::getShinyStatus($request);
             $this->_data['game'] = Pokemon::getGame($request);
             $this->_data['handheld'] = Pokemon::getHandHeld($request);
@@ -36,11 +42,18 @@ class TrainerController extends Controller {
         if(isset($_POST['save']) === true) {
 
             Pokemon::updateEncounters($request);
+            Pokemon::updateHp($request);
+            Pokemon::updateDef($request);
+            Pokemon::updateAtt($request);
+            Pokemon::updateSpd($request);
+            Pokemon::updateSpa($request);
+            Pokemon::updateSpe($request);
 
         } else if(isset($_POST['shiny']) === true) {
 
             Pokemon::updateShinyStatus($request);
-        }
+        } 
+
 
         redirect('/trainer/' . $request['id']);
     }

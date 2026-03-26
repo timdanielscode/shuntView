@@ -73,12 +73,28 @@
                                 <input type="hidden" name="pokemonId" value="<?php echo $pokemonId; ?>"/>
                                 <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
                                 <label class="form-label d-block m-0"><b>On:</b> <?php echo $handheld; ?></label>
-                                <label class="form-label d-block m-0"><b>Pokemon:</b> <?php echo $game; ?></label>
+                                <label class="form-label d-block mb-2"><b>Pokemon:</b> <?php echo $game; ?></label>
+                                <div class="form-check p-0">
+                                    <label class="form-label" class="d-inline-block"><b>HP iv:</b></label>
+                                    <input type="text" name="hp" value="<?php echo $hp; ?>" class="iv hpIv"/>
+                                    <label class="form-label" class="d-inline-block"><b>DEF iv:</b></label>
+                                    <input type="text" name="def" value="<?php echo $def; ?>" class="iv ms-1"/>
+                                    <label class="form-label" class="d-inline-block"><b>ATT iv:</b></label>
+                                    <input type="text" name="att" value="<?php echo $att; ?>" class="iv ms-1"/>
+                                </div>
+                                <div class="form-check p-0">
+                                    <label class="form-label" class="d-inline-block"><b>SPD iv:</b></label>
+                                    <input type="text" name="spd" value="<?php echo $spd; ?>" class="iv ms-1"/>
+                                    <label class="form-label" class="d-inline-block"><b>SPA iv:</b></label>
+                                    <input type="text" name="spa" value="<?php echo $spa; ?>" class="iv ms-1"/>
+                                    <label class="form-label" class="d-inline-block"><b>SPE iv:</b></label>
+                                    <input type="text" name="spe" value="<?php echo $spe; ?>" class="iv ms-1"/>
+                                </div>
                                 <label class="form-label d-block m-0"><b>Shunt added at:</b> <?php echo date('d-m-Y H:i', strtotime($startedShuntDate) ); ?></label>
                                 <label class="form-label d-block mb-3"><b>Last shunted at:</b> <?php if(date('d-m-Y H:i', strtotime($startedShuntDate) ) === date('d-m-Y H:i', strtotime($lastShuntDate) )) { echo 'Not started yet.'; } else { echo date('d-m-Y H:i', strtotime($lastShuntDate) ); } ?></label>
                                 <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField"/>
-                                <input type="submit" name="save" value="Save" class="btn btn-primary saveButton"/>
-                                <input type="submit" name="shiny" value="Shiny" class="btn btn-outline-primary shinyButton"/>
+                                <input type="submit" name="save" value="Save" class="btn btn-secondary saveButton"/>
+                                <input type="submit" name="shiny" value="Shiny" class="btn btn-outline-secondary shinyButton"/>
                             </form>
                         <?php } ?>
                     </div>

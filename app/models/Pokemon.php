@@ -67,6 +67,78 @@ class Pokemon extends Model {
         }
     }
 
+    public static function getHp($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("hp")->from("pokemon")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("hp")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
+    public static function getDef($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("def")->from("pokemon")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("def")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
+    public static function getAtt($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("att")->from("pokemon")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("att")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
+    public static function getSpd($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("spd")->from("pokemon")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("spd")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
+    public static function getSpa($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("spa")->from("pokemon")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("spa")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
+    public static function getSpe($request) {
+
+        if(empty($request['pokemonId']) === true) {
+
+            return DB::try()->select("spe")->from("pokemon")->order("updated_at")->desc()->first()[0];
+
+        } else {
+
+            return DB::try()->select("spe")->from("pokemon")->where("id", "=", $request["pokemonId"])->and("gameId", "=", $request["gameId"])->first()[0];
+        }
+    }
+
     public static function getStartedShuntDate($request) {
 
         if(empty($request['pokemonId']) === true) {
@@ -123,6 +195,78 @@ class Pokemon extends Model {
             'updated_at' => date("Y-m-d H:i:s")
         
         ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+    }
+
+    public static function updateHp($request) {
+
+        if(!empty($request['hp']) === true) {
+
+            DB::try()->update('pokemon')->set([
+
+                'hp' => $request['hp']
+            
+            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+        }
+    }
+
+    public static function updateDef($request) {
+
+        if(!empty($request['def']) === true) {
+
+            DB::try()->update('pokemon')->set([
+
+                'def' => $request['def']
+            
+            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+        }
+    }
+
+    public static function updateAtt($request) {
+
+        if(!empty($request['att']) === true) {
+
+            DB::try()->update('pokemon')->set([
+
+                'att' => $request['att']
+            
+            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+        }
+    }
+
+    public static function updateSpd($request) {
+
+        if(!empty($request['spd']) === true) {
+
+            DB::try()->update('pokemon')->set([
+
+                'spd' => $request['spd']
+            
+            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+        }
+    }
+
+    public static function updateSpa($request) {
+
+        if(!empty($request['spa']) === true) {
+
+            DB::try()->update('pokemon')->set([
+
+                'spa' => $request['spa']
+            
+            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+        }
+    }
+
+    public static function updateSpe($request) {
+
+        if(!empty($request['spe']) === true) {
+
+            DB::try()->update('pokemon')->set([
+
+                'spe' => $request['spe']
+            
+            ])->where('id', '=', $request['pokemonId'])->and('gameId', '=', $request['gameId'])->run();
+        }
     }
 
     public static function updateShinyStatus($request) {
