@@ -63,15 +63,17 @@
                     </div>
                     <div class="col">
                         <form method="POST" action="">
-                            <select name="handheldId" class="form-select handhelds" size="5">
-                                <option value="1" selected="selected">GBC</option>
+                            <label class="form-label float-start mb-3"><b>Handheld:</b></label>
+                            <select name="handheldId" class="form-select handhelds <?php if(!empty(validation\Errors::get($rules, 'handheldId'))) { echo 'is-invalid'; } ?>" size="3">
+                                <option value="1">GBC</option>
                                 <option value="2">GBA</option>
                                 <option value="3">DS / DS Lite</option>
                                 <option value="4">3DS</option>
                                 <option value="5">Switch</option>
                             </select>
-                            <select name="gameId" class="form-select games" size="10">
-                                <option value="1" selected="selected">Pokemon Gold</option>
+                            <label class="form-labe float-start mb-3"><b>Game:</b></label>
+                            <select name="gameId" class="form-select games <?php if(!empty(validation\Errors::get($rules, 'gameId'))) { echo 'is-invalid'; } ?>" size="10">
+                                <option value="1">Pokemon Gold</option>
                                 <option value="2">Pokemon Silver</option>
                                 <option value="3">Pokemon Crystal</option>
                                 <option value="4">Pokemon Leaf Green</option>
@@ -106,7 +108,7 @@
                                 <option value="33">Pokemon Violet</option>
                                 <option value="34">Pokemon Legends Z-A</option>
                             </select>
-                            <input type="submit" name="submit" value="Select" class="btn btn-primary selectButton"/>
+                            <input type="submit" name="submit" value="Select" class="btn btn-secondary selectButton"/>
                         </form>
                     </div>
                 </div>

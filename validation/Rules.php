@@ -50,6 +50,17 @@ class Rules {
         return $this;
     }
 
+    public function handheldIdAndGameId($handheldId, $gameId) {
+
+        $validation = new Validate();
+
+        $validation->input(['handheldId' => $handheldId])->as("hp")->rules(["required" => true, "min" => 1, "max" => 2, "numeric" => true]);
+        $validation->input(['gameId' => $gameId])->as("def")->rules(["required" => true, "min" => 1, "max" => 2, "numeric" => true]);
+                    
+        $this->errors = $validation->errors;
+        return $this;
+    }
+
     /**
      * To check for failed validation errors
      * 
