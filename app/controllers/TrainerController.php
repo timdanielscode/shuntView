@@ -14,7 +14,8 @@ class TrainerController extends Controller {
     public function index($request) {
 
         $this->_data['userId'] = explode('?', $request['id']);
-        $this->_data['pokemon'] = DB::try()->select("id", "pokemonId", "gameId", "shiny", "hp", "def", "att", "spd", "spa", "spe")->from("pokemon")->order("updated_at")->desc()->fetch();
+        $this->_data['pokemon'] = Pokemon::getAll();
+
         $this->_data[] = $this->getData($request);
 
         $this->_data['rules'] = [];
@@ -53,19 +54,18 @@ class TrainerController extends Controller {
         $this->updateShinyStatus($request);
     }
 
-
     private function updateData($request) {
 
         if(isset($_POST['save']) === true) {
 
-            Pokemon::updateEncounters($request);
+            Pokemon::updateEncounters($request['encounters'], $request['ID']);
 
-                Pokemon::updateHp($request);
-                Pokemon::updateDef($request);
-                Pokemon::updateAtt($request);
-                Pokemon::updateSpd($request);
-                Pokemon::updateSpa($request);
-                Pokemon::updateSpe($request);
+            Pokemon::updateHp($request['hp'], $request['ID']);
+            Pokemon::updateDef($request);
+            Pokemon::updateAtt($request);
+            Pokemon::updateSpd($request);
+            Pokemon::updateSpa($request);
+            Pokemon::updateSpe($request);
 
             redirect('/trainer/' . $request['id']);
         }
@@ -90,6 +90,7 @@ class TrainerController extends Controller {
 
                 $this->_data[] = $this->getData($request);
                 $this->_data['rules'] = $rules->errors;
+                
                 return $this->view("trainer/index")->data($this->_data);
             }
         }

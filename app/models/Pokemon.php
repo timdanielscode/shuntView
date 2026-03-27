@@ -6,6 +6,11 @@ use database\DB;
 
 class Pokemon extends Model {
 
+    public static function getAll() {
+
+        return DB::try()->select("id", "pokemonId", "gameId", "shiny", "hp", "def", "att", "spd", "spa", "spe")->from("pokemon")->order("updated_at")->desc()->fetch();
+    }
+
     public static function getName($request) {
 
         $api = new Api();
@@ -199,86 +204,68 @@ class Pokemon extends Model {
         }
     }
 
-    public static function updateEncounters($request) {
+    public static function updateEncounters($encounters, $ID) {
 
         DB::try()->update('pokemon')->set([
 
-            'encounters' => $request['encounters'],
+            'encounters' => $encounters,
             'updated_at' => date("Y-m-d H:i:s")
         
-        ])->where('id', "=", $request['ID'])->run();
+        ])->where('id', "=", $ID)->run();
     }
 
-    public static function updateHp($request) {
+    public static function updateHp($hp, $ID) {
 
-        if(!empty($request['hp']) === true) {
+        DB::try()->update('pokemon')->set([
 
-            DB::try()->update('pokemon')->set([
-
-                'hp' => $request['hp']
+            'hp' => $hp
             
-            ])->where('id', "=", $request['ID'])->run();
-        }
+        ])->where('id', "=", $ID)->run();
     }
 
-    public static function updateDef($request) {
+    public static function updateDef($def, $ID) {
 
-        if(!empty($request['def']) === true) {
+        DB::try()->update('pokemon')->set([
 
-            DB::try()->update('pokemon')->set([
-
-                'def' => $request['def']
+            'def' => $def
             
-            ])->where('id', "=", $request['ID'])->run();
-        }
+        ])->where('id', "=", $ID)->run();
     }
 
-    public static function updateAtt($request) {
+    public static function updateAtt($att, $ID) {
 
-        if(!empty($request['att']) === true) {
+        DB::try()->update('pokemon')->set([
 
-            DB::try()->update('pokemon')->set([
-
-                'att' => $request['att']
+            'att' => $att
             
-            ])->where('id', "=", $request['ID'])->run();
-        }
+        ])->where('id', "=", $ID)->run();
     }
 
-    public static function updateSpd($request) {
+    public static function updateSpd($spd, $ID) {
 
-        if(!empty($request['spd']) === true) {
+        DB::try()->update('pokemon')->set([
 
-            DB::try()->update('pokemon')->set([
-
-                'spd' => $request['spd']
+            'spd' => $spd
             
-            ])->where('id', "=", $request['ID'])->run();
-        }
+        ])->where('id', "=", $ID)->run();
     }
 
-    public static function updateSpa($request) {
+    public static function updateSpa($spa, $ID) {
 
-        if(!empty($request['spa']) === true) {
+        DB::try()->update('pokemon')->set([
 
-            DB::try()->update('pokemon')->set([
-
-                'spa' => $request['spa']
+            'spa' => $spa
             
-            ])->where('id', "=", $request['ID'])->run();
-        }
+        ])->where('id', "=", $ID)->run();
     }
 
-    public static function updateSpe($request) {
+    public static function updateSpe($spe, $ID) {
 
-        if(!empty($request['spe']) === true) {
+        DB::try()->update('pokemon')->set([
 
-            DB::try()->update('pokemon')->set([
-
-                'spe' => $request['spe']
+            'spe' => $spe
             
-            ])->where('id', "=", $request['ID'])->run();
-        }
+        ])->where('id', "=", $ID)->run();
     }
 
     public static function updateShinyStatus($request) {
