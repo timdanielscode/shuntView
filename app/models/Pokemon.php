@@ -216,56 +216,74 @@ class Pokemon extends Model {
 
     public static function updateHp($hp, $ID) {
 
-        DB::try()->update('pokemon')->set([
+        if(!empty($hp) === true) {
 
-            'hp' => $hp
-            
-        ])->where('id', "=", $ID)->run();
+            DB::try()->update('pokemon')->set([
+
+                'hp' => $hp
+                    
+            ])->where('id', "=", $ID)->run();
+        }
     }
 
     public static function updateDef($def, $ID) {
 
-        DB::try()->update('pokemon')->set([
+        if(!empty($def) === true) {
 
-            'def' => $def
-            
-        ])->where('id', "=", $ID)->run();
+            DB::try()->update('pokemon')->set([
+
+                'def' => $def
+                    
+            ])->where('id', "=", $ID)->run();
+        }
     }
 
     public static function updateAtt($att, $ID) {
 
-        DB::try()->update('pokemon')->set([
+        if(!empty($att) === true) {
 
-            'att' => $att
-            
-        ])->where('id', "=", $ID)->run();
+            DB::try()->update('pokemon')->set([
+
+                'att' => $att
+                    
+            ])->where('id', "=", $ID)->run();
+        }
     }
 
     public static function updateSpd($spd, $ID) {
 
-        DB::try()->update('pokemon')->set([
+        if(!empty($spd) === true) {
 
-            'spd' => $spd
-            
-        ])->where('id', "=", $ID)->run();
+            DB::try()->update('pokemon')->set([
+
+                'spd' => $spd
+                    
+            ])->where('id', "=", $ID)->run();
+        }
     }
 
     public static function updateSpa($spa, $ID) {
 
-        DB::try()->update('pokemon')->set([
+        if(!empty($spa) === true) {
 
-            'spa' => $spa
-            
-        ])->where('id', "=", $ID)->run();
+            DB::try()->update('pokemon')->set([
+
+                'spa' => $spa
+                    
+            ])->where('id', "=", $ID)->run();
+        }
     }
 
     public static function updateSpe($spe, $ID) {
 
-        DB::try()->update('pokemon')->set([
+        if(!empty($spe) === true) {
 
-            'spe' => $spe
-            
-        ])->where('id', "=", $ID)->run();
+            DB::try()->update('pokemon')->set([
+
+                'spe' => $spe
+                    
+            ])->where('id', "=", $ID)->run();
+        }
     }
 
     public static function updateShinyStatus($request) {

@@ -34,16 +34,17 @@ class Rules {
         return $this;
     }
 
-    public function shiny($hp, $def, $att, $spd, $spa, $spe) {    
+    public function encountersAndIvs($encounters, $hp, $def, $att, $spd, $spa, $spe) {    
 
         $validation = new Validate();
 
-        $validation->input(['hp' => $hp])->as("hp")->rules(["required" => true, "min" => 1, "max" => 2]);
-        $validation->input(['def' => $def])->as("def")->rules(["required" => true, "min" => 1, "max" => 2]);
-        $validation->input(['att' => $att])->as("att")->rules(["required" => true, "min" => 1, "max" => 2]);
-        $validation->input(['spd' => $spd])->as("spd")->rules(["required" => true, "min" => 1, "max" => 2]);
-        $validation->input(['spa' => $spa])->as("spa")->rules(["required" => true, "min" => 1, "max" => 2]);
-        $validation->input(['spe' => $spe])->as("spe")->rules(["required" => true, "min" => 1, "max" => 2]);
+        $validation->input(['encounters' => $encounters])->as("encounters")->rules(["min" => 1, "max" => 6, "numeric" => true]);
+        $validation->input(['hp' => $hp])->as("hp")->rules(["min" => 1, "max" => 2, "numeric" => true]);
+        $validation->input(['def' => $def])->as("def")->rules(["min" => 1, "max" => 2, "numeric" => true]);
+        $validation->input(['att' => $att])->as("att")->rules(["min" => 1, "max" => 2, "numeric" => true]);
+        $validation->input(['spd' => $spd])->as("spd")->rules(["min" => 1, "max" => 2, "numeric" => true]);
+        $validation->input(['spa' => $spa])->as("spa")->rules(["min" => 1, "max" => 2, "numeric" => true]);
+        $validation->input(['spe' => $spe])->as("spe")->rules(["min" => 1, "max" => 2, "numeric" => true]);
                     
         $this->errors = $validation->errors;
         return $this;

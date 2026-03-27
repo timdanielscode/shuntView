@@ -48,6 +48,14 @@ class TrainerController extends Controller {
         return $this->_data;
     }
 
+    private function checkPokemonIdRequestData($request) {
+
+        if(!empty($request['pokemonId']) === true) {
+
+            return $request['pokemonId'];
+        }
+    }
+
     public function update($request) {
 
         $this->updateData($request);
@@ -58,14 +66,28 @@ class TrainerController extends Controller {
 
         if(isset($_POST['save']) === true) {
 
-            Pokemon::updateEncounters($request['encounters'], $request['ID']);
+            $rules = new Rules();
+            
+            if($rules->encountersAndIvs($request['encounters'], $request['hp'], $request['def'], $request['att'], $request['att'], $request['spd'], $request['spa'], $request['spe'])->validated()) {
 
-            Pokemon::updateHp($request['hp'], $request['ID']);
-            Pokemon::updateDef($request);
-            Pokemon::updateAtt($request);
-            Pokemon::updateSpd($request);
-            Pokemon::updateSpa($request);
-            Pokemon::updateSpe($request);
+                Pokemon::updateEncounters($request['encounters'], $request['ID']);
+
+                Pokemon::updateHp($request['hp'], $request['ID']);
+                Pokemon::updateDef($request['def'], $request['ID']);
+                Pokemon::updateAtt($request['att'], $request['ID']);
+                Pokemon::updateSpd($request['spd'], $request['ID']);
+                Pokemon::updateSpa($request['spa'], $request['ID']);
+                Pokemon::updateSpe($request['spe'], $request['ID']);
+            } else {
+
+                $this->_data['userId'] = explode('?', $request['id']);
+                $this->_data['pokemon'] = Pokemon::getAll();
+
+                $this->_data[] = $this->getData($request);
+                $this->_data['rules'] = $rules->errors;
+                
+                return $this->view("trainer/index")->data($this->_data);
+            }
 
             redirect('/trainer/' . $request['id']);
         }
@@ -75,24 +97,9 @@ class TrainerController extends Controller {
 
         if(isset($_POST['shiny']) === true) {
 
-            $rules = new Rules();
-            
-            if($rules->shiny($request['hp'], $request['def'], $request['att'], $request['att'], $request['spd'], $request['spa'], $request['spe'])->validated()) {
+            Pokemon::updateShinyStatus($request);
 
-                Pokemon::updateShinyStatus($request);
-
-                redirect('/trainer/' . $request['id']);
-
-            } else {
-
-                $this->_data['userId'] = explode('?', $request['id']);
-                $this->_data['pokemon'] = DB::try()->select("id", "pokemonId", "gameId", "shiny", "hp", "def", "att", "spd", "spa", "spe")->from("pokemon")->order("updated_at")->desc()->fetch();
-
-                $this->_data[] = $this->getData($request);
-                $this->_data['rules'] = $rules->errors;
-                
-                return $this->view("trainer/index")->data($this->_data);
-            }
+            redirect('/trainer/' . $request['id']); 
         }
     } 
 

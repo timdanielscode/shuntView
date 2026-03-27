@@ -99,7 +99,7 @@
                                 </div>
                                 <label class="form-label d-block m-0"><b>Shunt added at:</b> <?php echo date('d-m-Y H:i', strtotime($startedShuntDate) ); ?></label>
                                 <label class="form-label d-block mb-3"><b>Last shunted at:</b> <?php if(date('d-m-Y H:i', strtotime($startedShuntDate) ) === date('d-m-Y H:i', strtotime($lastShuntDate) )) { echo 'Not started yet.'; } else { echo date('d-m-Y H:i', strtotime($lastShuntDate) ); } ?></label>
-                                <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField"/>
+                                <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField <?php if(!empty(validation\Errors::get($rules, 'encounters'))) { echo 'is-invalid'; } ?>"/>
                                 <input type="submit" name="save" value="Save" class="btn btn-secondary saveButton"/>
                                 <input type="submit" name="shiny" value="Shiny" class="btn btn-outline-secondary shinyButton"/>
                                 
