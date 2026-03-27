@@ -102,6 +102,11 @@
                                 <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField"/>
                                 <input type="submit" name="save" value="Save" class="btn btn-secondary saveButton"/>
                                 <input type="submit" name="shiny" value="Shiny" class="btn btn-outline-secondary shinyButton"/>
+                                
+                            </form>
+                            <form method="POST" action="/trainer/<?php echo $userId[0]; ?>/delete" class="encounterForm">
+                                <input type="hidden" name="ID" value="<?php echo $id; ?>"/>
+                                <input type="submit" name="delete" value="Delete" class="btn btn-secondary deleteButton"/>
                             </form>
                         <?php } ?>
                     </div>

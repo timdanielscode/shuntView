@@ -57,7 +57,7 @@
                     </div>
                     <div class="col">
                         
-                        <h1><?php echo ucfirst(core\Session::get('pokemonName')); ?></h1>
+                        <h1><?php if(core\Session::exists('pokemonName') ) { echo ucfirst(core\Session::get('pokemonName')); } else { echo 'Bulbasaur'; } ?></h1>
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if(!empty($pokemonId) ) { echo $pokemonId; } else { echo '1'; } ?>.png" class="w-100"/>
 
                     </div>

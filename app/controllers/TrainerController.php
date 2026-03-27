@@ -93,5 +93,12 @@ class TrainerController extends Controller {
                 return $this->view("trainer/index")->data($this->_data);
             }
         }
+    } 
+
+    public function delete($request) {
+
+        Pokemon::delete("id", $request["ID"]);
+
+        redirect('/trainer/' . $request['id']);
     }
 }
