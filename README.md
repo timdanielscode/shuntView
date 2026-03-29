@@ -1,9 +1,7 @@
-![alt text](https://independentphp.com//website/assets/logo/logo.png)
+Create an overview of all your shiny Pokemon.<br>
+Increase encounters by clicking on a selected shunt.<br>
+Create an account to get started.
 
-A micro dependency free PHP framework<br>
-To built web apps without relying on external PHP dependencies.
+### Link 
 
-### Documentation 
-
-[https://independentphp.com/](https://independentphp.com/)
-
+https://shuntview.com/
