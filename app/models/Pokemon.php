@@ -3,12 +3,18 @@
 namespace app\models;
 
 use database\DB;
+use core\Session;
 
 class Pokemon extends Model {
 
+    public static function getUserId($username) {
+
+        return DB::try()->select("id")->from("users")->where("username", "=", $username)->first()[0];
+    }
+
     public static function getAll() {
 
-        return DB::try()->select("id", "pokemonId", "gameId", "shiny", "hp", "def", "att", "spd", "spa", "spe")->from("pokemon")->order("updated_at")->desc()->fetch();
+        return DB::try()->select("id", "pokemonId", "gameId", "shiny", "hp", "def", "att", "spd", "spa", "spe")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->fetch();
     }
 
     public static function getName($request) {
@@ -17,7 +23,7 @@ class Pokemon extends Model {
         
         if(empty($request['pokemonId']) === true) {
 
-            $id = DB::try()->select("pokemonId")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            $id = DB::try()->select("pokemonId")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
         } else {
 
             $id = $request['pokemonId'];
@@ -31,7 +37,7 @@ class Pokemon extends Model {
         if(empty($request['pokemonId']) === true) {
 
 
-            return DB::try()->select("id")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("id")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
         } else {
 
             return $request['ID'];
@@ -43,7 +49,7 @@ class Pokemon extends Model {
         if(empty($request['pokemonId']) === true) {
 
 
-            return DB::try()->select("pokemonId")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("pokemonId")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
         } else {
 
             return $request['pokemonId'];
@@ -54,10 +60,10 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("gameId")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("gameId")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
         } else {
 
-            return DB::try()->select("gameId")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("gameId")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -65,10 +71,10 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("shiny")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("shiny")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
         } else {
 
-            return DB::try()->select("shiny")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("shiny")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -76,11 +82,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("encounters")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("encounters")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("encounters")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("encounters")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->and("id", "=", $request["ID"])->first()[0];
         }
     }
 
@@ -88,11 +94,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("hp")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("hp")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("hp")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("hp")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -100,11 +106,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("def")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("def")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("def")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("def")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -112,11 +118,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("att")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("att")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("att")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("att")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -124,11 +130,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("spd")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("spd")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("spd")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("spd")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -136,11 +142,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("spa")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("spa")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("spa")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("spa")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -148,11 +154,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("spe")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("spe")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("spe")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("spe")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -160,11 +166,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("created_at")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("created_at")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("created_at")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("created_at")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -172,11 +178,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("updated_at")->from("pokemon")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("updated_at")->from("pokemon")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("updated_at")->from("pokemon")->where("id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("updated_at")->from("pokemon")->where("id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -184,11 +190,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->where("pokemon.id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("games.name")->from("games")->join("pokemon")->on("games.id", "=", "pokemon.gameId")->where("pokemon.id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -196,11 +202,11 @@ class Pokemon extends Model {
 
         if(empty($request['pokemonId']) === true) {
 
-            return DB::try()->select("handhelds.name")->from("handhelds")->join("pokemon")->on("handhelds.id", "=", "pokemon.handheldId")->order("updated_at")->desc()->first()[0];
+            return DB::try()->select("handhelds.name")->from("handhelds")->join("pokemon")->on("handhelds.id", "=", "pokemon.handheldId")->where("userId", "=", self::getUserId(Session::get("username")))->order("updated_at")->desc()->first()[0];
 
         } else {
 
-            return DB::try()->select("handhelds.name")->from("handhelds")->join("pokemon")->on("handhelds.id", "=", "pokemon.handheldId")->where("pokemon.id", "=", $request["ID"])->first()[0];
+            return DB::try()->select("handhelds.name")->from("handhelds")->join("pokemon")->on("handhelds.id", "=", "pokemon.handheldId")->where("pokemon.id", "=", $request["ID"])->and("userId", "=", self::getUserId(Session::get("username")))->first()[0];
         }
     }
 
@@ -211,7 +217,7 @@ class Pokemon extends Model {
             'encounters' => $encounters,
             'updated_at' => date("Y-m-d H:i:s")
         
-        ])->where('id', "=", $ID)->run();
+        ])->where('id', "=", $ID)->and("userId", "=", self::getUserId(Session::get("username")))->run();
     }
 
     public static function updateHp($hp, $ID) {
@@ -222,7 +228,7 @@ class Pokemon extends Model {
 
                 'hp' => $hp
                     
-            ])->where('id', "=", $ID)->run();
+            ])->where('id', "=", $ID)->and("userId", "=", self::getUserId(Session::get("username")))->run();
         }
     }
 
@@ -234,7 +240,7 @@ class Pokemon extends Model {
 
                 'def' => $def
                     
-            ])->where('id', "=", $ID)->run();
+            ])->where('id', "=", $ID)->and("userId", "=", self::getUserId(Session::get("username")))->run();
         }
     }
 
@@ -246,7 +252,7 @@ class Pokemon extends Model {
 
                 'att' => $att
                     
-            ])->where('id', "=", $ID)->run();
+            ])->where('id', "=", $ID)->and("userId", "=", self::getUserId(Session::get("username")))->run();
         }
     }
 
@@ -258,7 +264,7 @@ class Pokemon extends Model {
 
                 'spd' => $spd
                     
-            ])->where('id', "=", $ID)->run();
+            ])->where('id', "=", $ID)->and("userId", "=", self::getUserId(Session::get("username")))->run();
         }
     }
 
@@ -270,7 +276,7 @@ class Pokemon extends Model {
 
                 'spa' => $spa
                     
-            ])->where('id', "=", $ID)->run();
+            ])->where('id', "=", $ID)->and("userId", "=", self::getUserId(Session::get("username")))->run();
         }
     }
 
@@ -282,7 +288,7 @@ class Pokemon extends Model {
 
                 'spe' => $spe
                     
-            ])->where('id', "=", $ID)->run();
+            ])->where('id', "=", $ID)->and("userId", "=", self::getUserId(Session::get("username")))->run();
         }
     }
 
@@ -293,7 +299,7 @@ class Pokemon extends Model {
             'shiny' => Pokemon::checkGetShinyStatus($request),
             'updated_at' => date("Y-m-d H:i:s")
         
-        ])->where('id', "=", $request['ID'])->run();
+        ])->where('id', "=", $request['ID'])->and("userId", "=", self::getUserId(Session::get("username")))->run();
     }
 
     private static function checkGetShinyStatus($request) {

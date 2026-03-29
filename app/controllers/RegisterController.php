@@ -32,7 +32,7 @@ class RegisterController extends Controller {
 
             Session::set("success", "You have been successfully registered!");
                 
-            redirect('/');
+            redirect('/login');
         } else {
 
             $this->_data['username'] = $request['username'];

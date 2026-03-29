@@ -10,39 +10,15 @@
         <script defer src="/assets/js/script.js" type="text/javascript"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img class="px-3" src="/assets/img/logo.png" class="d-inline-block align-text-top"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register">Register</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <section class="p-5">
 
-            <?php if(core\Session::exists("success") === true) { ?>
-                    <div class="alert alert-primary text-center mt-5" role="alert">
-                        <?php core\Alert::message("success"); ?>
-                    </div>
-                <?php } ?>
+        <?php $this->include("navbar"); ?>
 
-            <div class="container text-center">
+        <section>
+            <div class="container text-center newContainer">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-4 order-md-1 order-3">
                         <div class="pokemonSpritesContainer">
-                            <div class="pokemonSprites">
+                            <div class="pokemonSprites width-101">
                                 <?php for($i = 1; $i <= 1025; $i++) { ?>
                                     <form method="GET" action="">
                                         <div class="spriteContainer">
@@ -55,13 +31,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md-4 order-md-2 order-1 responsivePadding">
                         
-                        <h1><?php if(core\Session::exists('pokemonName') ) { echo ucfirst(core\Session::get('pokemonName')); } else { echo 'Bulbasaur'; } ?></h1>
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if(!empty($pokemonId) ) { echo $pokemonId; } else { echo '1'; } ?>.png" class="w-100"/>
+                        <h1 class="pokemonName"><?php if(core\Session::exists('pokemonName') ) { echo ucfirst(core\Session::get('pokemonName')); } else { echo 'Bulbasaur'; } ?></h1>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if(!empty($pokemonId) ) { echo $pokemonId; } else { echo '1'; } ?>.png" class="w-75 shuntImageNew"/>
 
                     </div>
-                    <div class="col">
+                    <div class="col-md-4 order-2">
                         <form method="POST" action="">
                             <label class="form-label float-start mb-3"><b>Handheld:</b></label>
                             <select name="handheldId" class="form-select handhelds <?php if(!empty(validation\Errors::get($rules, 'handheldId'))) { echo 'is-invalid'; } ?>" size="3">

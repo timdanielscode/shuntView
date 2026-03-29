@@ -13,7 +13,6 @@
 
 .pokemonSprites form {
     display: inline-block;
-    width: 32%;
 }
 
 .pokemonSprites form button {
@@ -93,12 +92,25 @@
     text-align: left;
 }
 
+.encounterForm button {
+    display: block;
+    margin: 0 auto;
+}
+
 .iv {
     width: 40px;
 }
 
 .hpIv {
-    margin-left: 12px;
+    margin-left: 13px;
+}
+
+.defIv {
+    margin-left: 4px !important;
+}
+
+.attIv {
+    margin-left: 2px !important;
 }
 
 .is-invalid {
@@ -107,4 +119,92 @@
 
 .is-invalid:focus-visible {
     outline: 0;
+}
+
+.card-body {
+    height: 120px;
+}
+
+.cardRow {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+@media (max-width: 768px) {
+
+    .pokemonSpritesContainer {
+        margin-top: 50px;
+    }
+
+    .pokemonSprites {
+        position: relative !important;
+    }
+
+    .text-center.mt-5.d-none {
+        display: block !important;
+    }
+
+    .pokemonSprites.width-101 {
+        width: 101% !important;
+    }
+
+    .encounterForm button {
+        margin: 0 !important;
+        text-align: left;
+    }
+
+    .pokemonName {
+        text-align: left;
+    }
+
+    .iv {
+        width: 30px !important;
+    }
+    .responsivePadding {
+        padding-top: 10px !important;
+    }
+    .shuntImage {
+        width: 50% !important;
+    }
+    .shuntImageNew {
+        width: 50% !important;
+        display: block;
+        text-align: left;
+    }
+    label, input {
+        font-size: 14px !important;
+    }
+
+    .hpIv {
+        margin-left: 0px !important;
+    }
+
+    .defIv {
+        margin-left: 0px !important;
+    }
+
+    .attIv {
+        margin-left: 0px !important;
+    }
+    .pokemonSpritesContainer {
+        min-height: auto !important;
+    }
+}
+
+@media (max-width: 995px) {
+
+    .cardRow .card {
+        margin: 50px auto 0px auto;
+    } 
+    .nav-item {
+        margin-left: 20px;
+    }
+}
+
+@media (min-width: 995px) {
+
+    .newContainer {
+        margin-top: 50px;
+    }
 }

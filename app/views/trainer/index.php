@@ -11,30 +11,15 @@
         <script defer src="/assets/js/main.js" type="text/javascript"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img class="px-3" src="/assets/img/logo.png" class="d-inline-block align-text-top"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register">Register</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <section class="p-5">
-            <div class="container text-center">
+        
+        <?php $this->include("navbar"); ?>
+
+        <section>
+            <div class=" text-center">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-4 order-md-1 order-2">
+
+                        <h2 class="text-center mt-5 d-none"><b>Shunts</b></h2>
                         <div class="pokemonSpritesContainer">
                             <div class="pokemonSprites">
                                 <?php if(!empty($pokemon) === true) { ?>
@@ -69,14 +54,15 @@
                         <?php } ?>
 
                     </div>
-                    <div class="col">
+                    <div class="col-md-4 order-md-2 order-1 responsivePadding p-5">
 
                         <?php if(!empty($pokemon) === true) { ?>
-                            <h1 class="text-start"><?php echo ucfirst($pokemonName); ?></h1>
+                            <h1 class="pokemonName"><?php echo ucfirst($pokemonName); ?></h1>
+               
                             <form method="POST" action="/trainer/<?php echo $userId[0]; ?>" class="encounterForm">
-                                <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>">
-                                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if($shiny === 1) { echo 'shiny/'; } ?><?php echo $pokemonId; ?>.png"/>
-                                </button>
+                                                 <button id="encounters" type="button" name="count" value="<?php echo $encounters['encounters']; ?>">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<?php if($shiny === 1) { echo 'shiny/'; } ?><?php echo $pokemonId; ?>.png" class="w-75 shuntImage"/>
+                            </button>
                                 <input type="hidden" name="ID" value="<?php echo $id; ?>"/>
                                 <input type="hidden" name="gameId" value="<?php echo $gameId; ?>"/>
                                 <label class="form-label d-block m-0"><b>On:</b> <?php echo $handheld; ?></label>
@@ -85,9 +71,9 @@
                                     <label class="form-label" class="d-inline-block"><b>HP iv:</b></label>
                                     <input type="text" name="hp" value="<?php echo $hp; ?>" class="iv hpIv <?php if(!empty(validation\Errors::get($rules, 'hp'))) { echo 'is-invalid'; } ?>"/>
                                     <label class="form-label" class="d-inline-block"><b>DEF iv:</b></label>
-                                    <input type="text" name="def" value="<?php echo $def; ?>" class="iv ms-1 <?php if(!empty(validation\Errors::get($rules, 'def'))) { echo 'is-invalid'; } ?>"/>
+                                    <input type="text" name="def" value="<?php echo $def; ?>" class="iv defIv ms-1 <?php if(!empty(validation\Errors::get($rules, 'def'))) { echo 'is-invalid'; } ?>"/>
                                     <label class="form-label" class="d-inline-block"><b>ATT iv:</b></label>
-                                    <input type="text" name="att" value="<?php echo $att; ?>" class="iv ms-1 <?php if(!empty(validation\Errors::get($rules, 'att'))) { echo 'is-invalid'; } ?>"/>
+                                    <input type="text" name="att" value="<?php echo $att; ?>" class="iv attIv ms-1 <?php if(!empty(validation\Errors::get($rules, 'att'))) { echo 'is-invalid'; } ?>"/>
                                 </div>
                                 <div class="form-check p-0">
                                     <label class="form-label" class="d-inline-block"><b>SPD iv:</b></label>
@@ -99,6 +85,7 @@
                                 </div>
                                 <label class="form-label d-block m-0"><b>Shunt added at:</b> <?php echo date('d-m-Y H:i', strtotime($startedShuntDate) ); ?></label>
                                 <label class="form-label d-block mb-3"><b>Last shunted at:</b> <?php if(date('d-m-Y H:i', strtotime($startedShuntDate) ) === date('d-m-Y H:i', strtotime($lastShuntDate) )) { echo 'Not started yet.'; } else { echo date('d-m-Y H:i', strtotime($lastShuntDate) ); } ?></label>
+                                <label class="form-label d-block mb-3"><b>Encounters: </b></label>
                                 <input type="text" name="encounters" value="<?php echo $encounters; ?>" class="encountersTextField <?php if(!empty(validation\Errors::get($rules, 'encounters'))) { echo 'is-invalid'; } ?>"/>
                                 <input type="submit" name="save" value="Save" class="btn btn-secondary saveButton"/>
                                 <input type="submit" name="shiny" value="Shiny" class="btn btn-outline-secondary shinyButton"/>
@@ -110,8 +97,8 @@
                             </form>
                         <?php } ?>
                     </div>
-                    <div class="col">
-
+                    <div class="col-md-4 order-3">
+                        <h2 class="text-center mt-5 d-none"><b>Start new</b></h2>
                         <?php if(!empty($pokemon) === true) { ?>
                             <div class="pokemonSpritesContainer">
                                 <div class="pokemonSprites">
